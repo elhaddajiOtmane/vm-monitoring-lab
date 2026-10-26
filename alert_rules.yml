@@ -8,3 +8,10 @@ groups:
           severity: warning
         annotations:
           summary: "Less than 15% filesystem space remaining in lab"
+      - alert: LabMemoryHigh
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_Total_bytes)) * 100 > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "More than 90% memory used in lab for 5 minutes"
